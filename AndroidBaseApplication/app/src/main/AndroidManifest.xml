@@ -3,14 +3,14 @@
     package="com.renye.demo">
 
     <application
-        android:name="SingleApplication"
+        android:name=".RenYeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/launch_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/launch_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.BaseActivity">
+        <activity android:name=".activity.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
