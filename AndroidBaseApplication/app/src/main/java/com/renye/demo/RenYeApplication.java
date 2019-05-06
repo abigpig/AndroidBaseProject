@@ -14,8 +14,8 @@ public class RenYeApplication extends MultiDexApplication {
         super.onCreate();
     }
 
-   /* @GlideModule
+    @GlideModule
     public final class MyAppGlideModule extends AppGlideModule {
         // init Glide
-    }*/
+    }
 }
