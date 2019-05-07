@@ -53,4 +53,12 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-24'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-24'
 
+    //square/retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+
+    //square/okhttp
+    implementation 'com.squareup.okhttp3:okhttp:3.14.1'
+
+    //square/okio
+    implementation 'com.squareup.okio:okio:2.2.2'
 }

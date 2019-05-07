@@ -43,3 +43,24 @@ https://muyangmin.github.io/glide-docs-cn/
   还集成了各种炫酷的 Header 和 Footer。
 
   https://github.com/abigpig/SmartRefreshLayout
+  
+  
+ 5.//square/okio
+   
+   Okio is a library that complements java.io and java.nio to make it much easier to access, store, and process your data. 
+   It started as a component of OkHttp, the capable HTTP client included in Android. 
+   It's well-exercised and ready to solve new problems.
+   
+   https://github.com/square/okio/
+   
+ 6.//square/okhttp
+ 
+   An HTTP & HTTP/2 client for Android and Java applications.
+   
+   https://github.com/square/okhttp
+   
+ 7.//square/retrofit
+ 
+   Type-safe HTTP client for Android and Java by Square, Inc.
+   
+   https://github.com/square/retrofit
