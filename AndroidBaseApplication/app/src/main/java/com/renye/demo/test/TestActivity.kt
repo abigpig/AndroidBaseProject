@@ -7,8 +7,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import butterknife.BindView
+import butterknife.OnClick
 import com.bumptech.glide.Glide
 import com.renye.demo.R
 import com.renye.demo.activity.BaseActivity
@@ -16,14 +19,9 @@ import com.scwang.smartrefresh.header.WaveSwipeHeader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter
+import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : BaseActivity() {
-
-    @BindView(R.id.refreshLayout)
-    lateinit var mRefreshLayout: SmartRefreshLayout
-
-    @BindView(R.id.recyclerView)
-    lateinit var mRecyclerView: RecyclerView
 
     private lateinit var mAdapter: MyRecyclerAdapter
     private lateinit var mDatas: MutableList<Int>
@@ -49,7 +47,7 @@ class TestActivity : BaseActivity() {
         }
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-           Glide.with(mContext).load(R.mipmap.launch_iocn).into(holder.iv)
+            Glide.with(mContext).load(R.mipmap.launch_iocn).into(holder.iv)
         }
 
         class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -68,20 +66,25 @@ class TestActivity : BaseActivity() {
         //header.setEnableHorizontalDrag(true)
         var header = WaveSwipeHeader(this)
 
-        mRefreshLayout.setRefreshHeader(header)
+        test_refreshLayout.setRefreshHeader(header)
         var footer = BallPulseFooter(this)
         footer.setSpinnerStyle(SpinnerStyle.Scale)
-        mRefreshLayout.setRefreshFooter(footer)
+        test_refreshLayout.setRefreshFooter(footer)
 
         mDatas = mutableListOf()
         for (i in 30 downTo 0 step 1) {
             mDatas.add(i)
         }
-        mAdapter = MyRecyclerAdapter(this,mDatas)
+        mAdapter = MyRecyclerAdapter(this, mDatas)
         //设置layoutManager
-        mRecyclerView.layoutManager = LinearLayoutManager(this)
-        mRecyclerView.adapter = mAdapter
+        test_recyclerView.layoutManager = LinearLayoutManager(this)
+        test_recyclerView.adapter = mAdapter
 
+    }
+
+    @OnClick(R.id.test_btn)
+    fun onClick(view: View) {
+        Toast.makeText(this,"one",Toast.LENGTH_SHORT).show()
     }
 
 }

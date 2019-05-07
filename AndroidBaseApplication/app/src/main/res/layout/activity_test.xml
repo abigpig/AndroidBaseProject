@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -7,15 +7,24 @@
         tools:context=".test.TestActivity">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/refreshLayout"
+            android:id="@+id/test_refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/test_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
                 android:background="#fff"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+            android:id="@+id/test_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/launch_iocn"
+            android:layout_margin="20dp"
+            android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

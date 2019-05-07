@@ -7,7 +7,6 @@ import butterknife.Unbinder
 
 open class BaseActivity : AppCompatActivity() {
 
-    lateinit var butterKnifeBinder: Unbinder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,11 +14,11 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
-        butterKnifeBinder = ButterKnife.bind(this)
+        ButterKnife.bind(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        butterKnifeBinder.unbind()
+        ButterKnife.bind(this).unbind()
     }
 }
