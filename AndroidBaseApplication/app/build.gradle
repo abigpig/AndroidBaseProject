@@ -56,6 +56,9 @@ dependencies {
     //google/gson
     implementation 'com.google.code.gson:gson:2.8.5'
 
+    //square/retrofit/Converter: Gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
     //square/retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 
