@@ -81,8 +81,10 @@ class TestActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
         model = ViewModelProviders.of(this).get(MyViewModel::class.java)
-        var mutableList: MutableList<String> = mutableListOf<String>()
-        model.init(mutableList)
+        if (model.getData().value == null) {
+            var mutableList: MutableList<String> = mutableListOf<String>()
+            model.init(mutableList)
+        }
         model.getData().observe(this, Observer<MutableList<String>> {
             mAdapter.notifyDataSetChanged()
         })
