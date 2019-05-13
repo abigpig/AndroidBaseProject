@@ -1,5 +1,6 @@
 package com.renye.demo.test
 
+import android.arch.lifecycle.*
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -36,8 +37,7 @@ import retrofit2.http.GET
 class TestActivity : BaseActivity() {
 
     private lateinit var mAdapter: MyRecyclerAdapter
-    private lateinit var mDatas: MutableList<String>
-
+    private lateinit var model: MyViewModel
 
     class MyRecyclerAdapter : RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder> {
 
@@ -80,6 +80,12 @@ class TestActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
+        model = ViewModelProviders.of(this).get(MyViewModel::class.java)
+        var mutableList: MutableList<String> = mutableListOf<String>()
+        model.init(mutableList)
+        model.getData().observe(this, Observer<MutableList<String>> {
+            mAdapter.notifyDataSetChanged()
+        })
         initView()
     }
 
@@ -92,8 +98,8 @@ class TestActivity : BaseActivity() {
         var footer = BallPulseFooter(this)
         footer.setSpinnerStyle(SpinnerStyle.Scale)
         test_refreshLayout.setRefreshFooter(footer)
-        mDatas = mutableListOf()
-        mAdapter = MyRecyclerAdapter(this, mDatas)
+
+        mAdapter = MyRecyclerAdapter(this, model.getList()!!)
         //设置layoutManager
         test_recyclerView.layoutManager = LinearLayoutManager(this)
         test_recyclerView.adapter = mAdapter
@@ -105,7 +111,7 @@ class TestActivity : BaseActivity() {
         getAsyncTaskData()
     }
 
-    fun getAsyncTaskData() {
+    private fun getAsyncTaskData() {
         val retrofit = Retrofit.Builder().baseUrl("http://fanyi.youdao.com/")
             .addConverterFactory(GsonConverterFactory.create()).build()
 
@@ -117,9 +123,10 @@ class TestActivity : BaseActivity() {
                 for (jsonElement: JsonElement in jsonArray) {
                     var value: String = (jsonElement as JsonObject).get("key").toString()
                     value = value.replace("\"", "")
-                    mDatas.add(value)
+                    var list = model.getList()
+                    list!!.add(value)
+                    model.getData().postValue(list)
                 }
-                mAdapter.notifyDataSetChanged()
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
@@ -133,6 +140,27 @@ class TestActivity : BaseActivity() {
         fun fetchCar(): Call<JsonObject>
     }
 
+
+    class MyViewModel : ViewModel() {
+        private val data = MutableLiveData<MutableList<String>>()
+
+        fun init(list: MutableList<String>) {
+            data.value = list
+        }
+
+
+        fun getData(): MutableLiveData<MutableList<String>> {
+            return data
+        }
+
+        fun getList(): MutableList<String>? {
+            return data.value
+        }
+
+        private fun loadUsers() {
+            // Do an asynchronous operation to fetch users.
+        }
+    }
 }
 
 /*
